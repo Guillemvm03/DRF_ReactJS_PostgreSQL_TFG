@@ -19,6 +19,8 @@ import { NoAuthGuard, AuthGuard } from "./services/guards/AuthGuard";
 
 import { SlotsContext } from "./context/SlotsContext";
 
+
+
 function App() {
   const StationsDashboard = React.lazy(() =>
     import("./pages/admin/stations/StationsDashboard")
@@ -42,7 +44,7 @@ function App() {
     import("./pages/StationDetails/StationDetails")
   );
   const HomePage = React.lazy(() => import("./pages/client/Home/HomePage"));
-  const AdminPage = React.lazy(() => import("./pages/admin/AdminPage"));
+  // const AdminPage = React.lazy(() => import("./pages/admin/AdminPage"));
   const PaymentPage = React.lazy(() => import("./pages/payment/PaymentPage"));
   const ContactUs = React.lazy(() => import("./pages/contact/ContactUs"));
   const PricingPage = React.lazy(() => import("./pages/payment/PricingPage"));
@@ -133,6 +135,9 @@ function App() {
       </Suspense>
     </>
   );
+
+  
 }
+
 
 export default App;

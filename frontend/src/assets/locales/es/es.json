@@ -1,0 +1,69 @@
+{
+
+    "VIEWS":{
+        "HEADER": {
+            "home":"Casa",
+            "about":"Acerca de",
+            "contact":"Contacto",
+            "services":"Servicios",
+            "pricing":"Precios",
+            "login":"Iniciar sesión",
+            "logout":"Cerrar sesión"
+        },
+        "HOME": {
+            "title":"Invertimos en el potencial del mundo",
+            "content":"Aquí en Trailblaze nos enfocamos en mercados donde la tecnología, la innovación y el capital pueden desbloquear valor a largo plazo y impulsar el crecimiento económico",
+            "get-started":"Empezar",
+            "learn-more":"Aprender más"
+        },
+        "CREDENTIALS": {
+            "LOGIN": {
+                "title":"Iniciar sesión en tu cuenta",
+                "email":"Tu correo electrónico",
+                "password":"Tu contraseña",
+                "login":"Iniciar sesión",
+                "redirect-register":"No tienes una cuenta?",
+                "register":"Registrate"
+                
+            },
+            "REGISTER": {
+                "title":"Registra una nueva cuenta",
+                "email":"Correo electrónico",
+                "number":"Número de teléfono",
+                "password":"Contraseña",
+                "confirm-password":"Confirmar contraseña",
+                "register":"Registrarse",
+                "already-member":"Ya tienes una cuenta?",
+                "login":"Iniciar sesión"
+            }
+
+        },
+        "CONTACT_US": {
+            "title": "Contáctanos",
+            "description": "¿Tienes un problema técnico? ¿Quieres enviar comentarios sobre una función beta? ¿Necesitas detalles sobre nuestro plan empresarial? Háznoslo saber.",
+            "yourName": "Tu nombre",
+            "yourEmail": "Tu correo electrónico",
+            "yourMessage": "Tu mensaje",
+            "leaveComment": "Deja un comentario...",
+            "sendMessage": "Enviar mensaje"
+        },
+        "TOASTR": {
+            "emailSent": "Correo electrónico enviado exitosamente",
+            "emailFailedToSend": "Error al enviar el correo electrónico"
+        },
+        "PRICING": {
+            "title": "Precios",
+            "description": "Recarga rápidamente tu saldo.",
+            "starter": "Inicio",
+            "starterDescription": "La mejor opción para uso personal y tu próximo proyecto.",
+            "company": "Empresa",
+            "companyDescription": "Relevante para múltiples usuarios, soporte extendido y premium.",
+            "enterprise": "Empresa grande",
+            "enterpriseDescription": "Ideal para uso a gran escala y derechos de redistribución extendidos.",
+            "getStarted": "Empezar"
+        }
+
+    }
+
+
+}

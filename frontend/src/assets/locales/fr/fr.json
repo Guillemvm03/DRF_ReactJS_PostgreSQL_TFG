@@ -1,0 +1,67 @@
+{
+
+    "VIEWS":{
+        "HEADER": {
+            "home":"Accueil",
+            "about":"À propos",
+            "contact":"Contact",
+            "services":"Services",
+            "pricing":"Tarifs",
+            "login":"Se connecter",
+            "logout":"Se déconnecter"
+        },
+        "HOME": {
+            "title":"Nous investissons dans le potentiel du monde",
+            "content":"Ici chez Trailblaze, nous nous concentrons sur les marchés où la technologie, l'innovation et le capital peuvent libérer une valeur à long terme et stimuler la croissance économique",
+            "get-started":"Commencer",
+            "learn-more":"En savoir plus"
+        },
+        "CREDENTIALS": {
+            "LOGIN": {
+                "title": "Connectez-vous à votre compte",
+                "email": "Votre adresse e-mail",
+                "password": "Votre mot de passe",
+                "login": "Se connecter",
+                "redirect-register": "Vous n'avez pas de compte ?",
+                "register": "S'inscrire"
+            },
+            "REGISTER": {
+                "title": "Créez un nouveau compte",
+                "email": "Adresse e-mail",
+                "number": "Numéro de téléphone",
+                "password": "Mot de passe",
+                "confirm-password": "Confirmez le mot de passe",
+                "register": "S'inscrire",
+                "already-member": "Vous avez déjà un compte ?",
+                "login": "Se connecter"
+            }
+        },
+        "CONTACT_US": {
+            "title": "Contactez-nous",
+            "description": "Vous avez un problème technique ? Vous voulez envoyer des commentaires sur une fonctionnalité bêta ? Besoin de détails sur notre plan Business ? Faites-le nous savoir.",
+            "yourName": "Votre nom",
+            "yourEmail": "Votre e-mail",
+            "yourMessage": "Votre message",
+            "leaveComment": "Laissez un commentaire...",
+            "sendMessage": "Envoyer un message"
+        },
+        "TOASTR": {
+            "emailSent": "E-mail envoyé avec succès",
+            "emailFailedToSend": "Échec de l'envoi de l'e-mail"
+        },
+        "PRICING": {
+            "title": "Tarification",
+            "description": "Rechargez rapidement votre solde.",
+            "starter": "Départ",
+            "starterDescription": "Meilleure option pour un usage personnel et pour votre prochain projet.",
+            "company": "Société",
+            "companyDescription": "Pertinent pour plusieurs utilisateurs, support étendu et premium.",
+            "enterprise": "Entreprise",
+            "enterpriseDescription": "Idéal pour les utilisations à grande échelle et les droits de redistribution étendus.",
+            "getStarted": "Commencer"
+        }
+
+    }
+
+
+}

@@ -28,6 +28,7 @@ services:
       - PG_HOST=local_pgdb
     depends_on:
       - db
+      - redis
 
   db:
     image: postgres
@@ -54,12 +55,12 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
 
-  # es:
-  #   image: elasticsearch:7.8.1
-  #   environment:
-  #     - discovery.type=single-node
-  #   ports:
-  #     - "9200:9200"    
+  redis:
+    image: "redis:alpine"
+    container_name: redis_for_trailblaze
+    ports:
+      - "6379:6379"
+
 
 volumes:
   local_pgdata:

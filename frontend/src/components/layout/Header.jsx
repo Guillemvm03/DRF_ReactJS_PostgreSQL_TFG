@@ -1,8 +1,9 @@
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
 import "./Header.scss";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useTranslation } from 'react-i18next';
+import { useThemeMode } from 'flowbite-react';
 
 const lngs = {
   gb: { nativeName: "English" },
@@ -14,8 +15,10 @@ function Header() {
     
     const { t, i18n } = useTranslation();
     const activeLanguage = i18n.language;
+    const { mode, toggleMode } = useThemeMode(); // Utiliza toggleMode para cambiar el tema
 
     console.log(activeLanguage);
+
 
   const Navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -25,12 +28,15 @@ function Header() {
     stations: () => Navigate("/admin/dashboard/stations"),
     admin: () => Navigate("/admin"),
     contact: () => Navigate("/contactus"),
+    explore: () => Navigate("/explore"),
     profile: () => Navigate("/profile"),
     pricing: () => Navigate("/pricing"),
     login: () => Navigate("/auth/login"),
   };
 
+
   return (
+    <Flowbite>
     <Navbar fluid rounded>
       <Navbar.Brand>
         {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="TrailBlaze Logo" /> */}
@@ -40,9 +46,10 @@ function Header() {
         >
           TrailBlaze
         </span>
+
       </Navbar.Brand>
       <div className="flex md:order-2">
-        
+
         {Object.entries(user).length > 0 ? (
           <Dropdown
             arrowIcon={false}
@@ -73,8 +80,13 @@ function Header() {
             <Dropdown.Item>Settings</Dropdown.Item>
             <Dropdown.Item onClick={redirects.profile}>Profile</Dropdown.Item>
             <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Item>
+            <DarkThemeToggle />
+
+            </Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={() => logout()}>Sign out</Dropdown.Item>
+
           </Dropdown>
         ) : (
           <button
@@ -175,8 +187,13 @@ function Header() {
         <Navbar.Link onClick={redirects.contact}>
         {t('VIEWS.HEADER.contact')}
             </Navbar.Link>
+        <Navbar.Link onClick={redirects.explore}>
+        {t('VIEWS.HEADER.explore')}
+            </Navbar.Link>
+            
       </Navbar.Collapse>
     </Navbar>
+    </Flowbite>
   );
 }
 

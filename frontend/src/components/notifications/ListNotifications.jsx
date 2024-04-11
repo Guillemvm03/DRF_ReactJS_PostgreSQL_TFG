@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Label, Card, TextInput } from 'flowbite-react';
 import Modal from './Modal';
-import { HiOutlineExclamationCircle } from 'react-icons/hi';
+// import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { useAuth } from '../../hooks/useAuth';
 
 const ListNotifications = ({ notifications, createNotification, createResponse, deleteNotification }) => {
@@ -102,7 +102,7 @@ const ListNotifications = ({ notifications, createNotification, createResponse, 
                     <Card key={notification.id}>
                         <div>
                             <Modal key={notification.id} settings={{ type: "delete", titleButton: "Delete", color: "failure" }} sendData={() => deleteIncident(notification.id)}>
-                                <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                                {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
                                 <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                                     Are you sure you want to delete this incident?
                                 </h3>

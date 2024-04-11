@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from rest_framework import viewsets, status, views
+from rest_framework import viewsets, status, views,generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, action, permission_classes
 from rest_framework.permissions import (IsAuthenticated, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly)
 from django.contrib.auth import authenticate
 
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserDetailSerializer
 
 
 # Create your views here.
@@ -65,6 +65,11 @@ class UserView(viewsets.GenericViewSet):
     #     serializer.save()
     #     return Response(serializer.data, status=status.HTTP_200_OK)
 
-
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset= User.objects.all()
+    serializer_class = UserDetailSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly)
+    lookup_field = 'username'
+    lookup_url_kwarg = 'username'
 
 

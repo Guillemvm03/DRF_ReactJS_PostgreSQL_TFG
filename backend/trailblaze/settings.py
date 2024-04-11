@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'trailblaze.app.payout',
     'trailblaze.app.rent',
     'trailblaze.app.notifications',
-    # 'trailblaze.app.logs',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -176,13 +176,15 @@ AUTH_USER_MODEL = "users.User"
 
 # JWT_EXP_TIME = 60 
 
-# Elasticsearch
-# ELASTICSEARCH_DSL = {
-#     'default': {
-#         'hosts': os.getenv("ELASTICSEARCH_DSL_HOSTS", 'es:9200')
-#     },
-# }
-
+ASGI_APPLICATION = 'trailblaze.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('redis', 6379)],
+        },
+    },
+}
 
 
 REST_FRAMEWORK = {

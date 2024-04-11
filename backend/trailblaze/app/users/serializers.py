@@ -5,6 +5,7 @@ from ..rent.models import Rent
 from ..rent.serializers import RentSerializer
 
 class UserSerializer(serializers.ModelSerializer):
+
     
     class Meta:
         model = User
@@ -75,3 +76,24 @@ class UserSerializer(serializers.ModelSerializer):
                 'token': user.token,
 
             }
+
+class UserDetailSerializer(serializers.ModelSerializer):
+
+    i_follow = serializers.SerializerMethodField(read_only=True)
+    following = serializers.SerializerMethodField(read_only=True)
+    followers = serializers.SerializerMethodField(read_only=True)
+    class Meta:
+        model = User
+        fields = ('id','username', 'uuid', 'email', 'phone','role', 'password', 'balance', 'avatar', 'cover_image', 
+                  'date_joined','i_follow','followers','following')
+        extra_kwargs = {'password': {'write_only': True}}
+
+
+    def get_followers(self,obj):
+        return obj.followed.count()
+    
+    def get_following(self,obj):
+        return obj.following.count()
+
+    def get_followed_usernames(self, obj): 
+        return obj.followed_usernames

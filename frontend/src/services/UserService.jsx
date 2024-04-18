@@ -13,6 +13,9 @@ const UserService = {
     GetUser() {
         return Api().get('user');
     },
+    GetUserByUsername(username) {
+        return Api().get(`user/${username}`);
+    }
 
 
 }

@@ -78,22 +78,17 @@ class UserSerializer(serializers.ModelSerializer):
             }
 
 class UserDetailSerializer(serializers.ModelSerializer):
+    followers_count = serializers.SerializerMethodField()
+    following_count = serializers.SerializerMethodField()
 
-    i_follow = serializers.SerializerMethodField(read_only=True)
-    following = serializers.SerializerMethodField(read_only=True)
-    followers = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = User
-        fields = ('id','username', 'uuid', 'email', 'phone','role', 'password', 'balance', 'avatar', 'cover_image', 
-                  'date_joined','i_follow','followers','following')
+        fields = ('id', 'username', 'uuid', 'email', 'phone', 'role', 'balance', 'avatar', 'cover_image', 
+                  'date_joined', 'followers_count', 'following_count', 'following')
         extra_kwargs = {'password': {'write_only': True}}
 
-
-    def get_followers(self,obj):
+    def get_followers_count(self, obj):
         return obj.followed.count()
     
-    def get_following(self,obj):
+    def get_following_count(self, obj):
         return obj.following.count()
-
-    def get_followed_usernames(self, obj): 
-        return obj.followed_usernames

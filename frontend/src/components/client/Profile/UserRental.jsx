@@ -109,7 +109,7 @@ const ProfilePage = () => {
       <section className="text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
-            <GoogleMap
+            {/* <GoogleMap
               zoom={13}
               center={center}
               onLoad={onLoad}
@@ -143,7 +143,7 @@ const ProfilePage = () => {
                 key={"kwsjvdj"}
                 position={{ lat: parseFloat(mapL), lng: parseFloat(mapLN) }}
               ></Marker>
-            </GoogleMap>
+            </GoogleMap> */}
 
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">

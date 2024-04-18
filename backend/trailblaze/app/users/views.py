@@ -66,10 +66,8 @@ class UserView(viewsets.GenericViewSet):
     #     return Response(serializer.data, status=status.HTTP_200_OK)
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset= User.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserDetailSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     lookup_field = 'username'
     lookup_url_kwarg = 'username'
-
-

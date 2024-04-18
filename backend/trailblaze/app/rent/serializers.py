@@ -21,7 +21,7 @@ class RentSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Rent
-        fields = ['id', 'user', 'bike', 'collection_slot','return_slot','start_date', 'end_date', 'amount', 'status', 'lat', 'lng']
+        fields = ['id', 'user', 'bike', 'collection_slot','return_slot','start_date', 'end_date', 'amount', 'status','start_lat', 'start_lng', 'end_lat', 'end_lng' ]
         # read_only_fields = [ 'user' ]
 
 

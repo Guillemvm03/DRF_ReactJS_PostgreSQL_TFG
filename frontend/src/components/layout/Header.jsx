@@ -1,6 +1,6 @@
 import { Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
 import "./Header.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useTranslation } from 'react-i18next';
 import { useThemeMode } from 'flowbite-react';
@@ -34,68 +34,73 @@ function Header() {
     login: () => Navigate("/auth/login"),
   };
 
+  const isExploreRoute = location.pathname.startsWith("/explore");
+
 
   return (
     <Flowbite>
     <Navbar fluid rounded>
       <Navbar.Brand>
-        {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="TrailBlaze Logo" /> */}
+      {/* <img src="https://files.oaiusercontent.com/file-9HREnGcKpXzTXr1ZxycEIWzU?se=2024-04-17T18%3A58%3A28Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D5b83adbb-d393-4a6e-bddb-3bca4cb9270b.webp&sig=Lf4CDzTtd0e/JSFTnB8qRt8bBeGOavK/cfzNmG2R7HQ%3D" 
+      className="h-12 sm:h-16 md:h-20 lg:h- xl:h-32" 
+      alt="TrailBlaze Logo" /> */}
+
+
         <span
           className="self-center whitespace-nowrap text-xl font-semibold dark:text-white cursor-pointer"
           onClick={redirects.home}
         >
           TrailBlaze
+          
+        {/* <img src="../../assets/img/logoo.png" alt="" /> */}
         </span>
 
       </Navbar.Brand>
       <div className="flex md:order-2">
-
-        {Object.entries(user).length > 0 ? (
-          <Dropdown
-            arrowIcon={false}
-            inline
-            label={
-              <div>
-                <Avatar
-                  alt="User settings"
-                  img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                  rounded
-                />
-                {user.unread_notifications > 0 && (
-                  <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-0 mt-1 -end-0 me-1 dark:border-gray-900">
-                    {user.unread_notifications}
-                  </div>
-                )}
-              </div>
-            }
-          >
-            <Dropdown.Header>
-              <span className="block text-sm">{user.username}</span>
-              {/* <span className="block truncate text-sm font-medium">{user.email}</span> */}
-              <span className="block truncate text-xs">{user.balance} €</span>
-            </Dropdown.Header>
-            {user.role === "Admin" && (
-              <Dropdown.Item onClick={redirects.admin}>Dashboard</Dropdown.Item>
-            )}
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Item onClick={redirects.profile}>Profile</Dropdown.Item>
-            <Dropdown.Item>Earnings</Dropdown.Item>
-            <Dropdown.Item>
-            <DarkThemeToggle />
-
-            </Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={() => logout()}>Sign out</Dropdown.Item>
-
-          </Dropdown>
-        ) : (
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={redirects.login}
-          >
-            {t("VIEWS.HEADER.login")}
-          </button>
-        )}
+        
+      {!isExploreRoute && Object.entries(user).length > 0 ? (
+                        <Dropdown
+                            arrowIcon={false}
+                            inline
+                            label={
+                                <div>
+                                    <Avatar
+                                        alt="User settings"
+                                        img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                        rounded
+                                    />
+                                    {user.unread_notifications > 0 && (
+                                        <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-0 mt-1 -end-0 me-1 dark:border-gray-900">
+                                            {user.unread_notifications}
+                                        </div>
+                                    )}
+                                </div>
+                            }
+                        >
+                            <Dropdown.Header>
+                                <span className="block text-sm">{user.username}</span>
+                                <span className="block truncate text-xs">{user.balance} €</span>
+                            </Dropdown.Header>
+                            {user.role === "Admin" && (
+                                <Dropdown.Item onClick={redirects.admin}>Dashboard</Dropdown.Item>
+                            )}
+                            <Dropdown.Item>Settings</Dropdown.Item>
+                            <Dropdown.Item onClick={redirects.profile}>Profile</Dropdown.Item>
+                            <Dropdown.Item>Earnings</Dropdown.Item>
+                            <Dropdown.Item>
+                                <DarkThemeToggle />
+                            </Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item onClick={() => logout()}>Sign out</Dropdown.Item>
+                        </Dropdown>
+                    ) : !isExploreRoute && (
+                        <button
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            onClick={redirects.login}
+                        >
+                            {t("VIEWS.HEADER.login")}
+                        </button>
+                    )}
         <Navbar.Toggle />
 
         {/* Dropdown de idioma */}
@@ -171,27 +176,28 @@ function Header() {
 
 
       </div>
-      <Navbar.Collapse>
-        <Navbar.Link onClick={redirects.home} active>
-        {t('VIEWS.HEADER.home')}
-        </Navbar.Link>
-        <Navbar.Link href="#">
-        {t('VIEWS.HEADER.about')}
-            </Navbar.Link>
-        <Navbar.Link href="#">
-        {t('VIEWS.HEADER.services')}
-        </Navbar.Link>
-        <Navbar.Link onClick={redirects.pricing}>
-        {t('VIEWS.HEADER.pricing')}
-            </Navbar.Link>
-        <Navbar.Link onClick={redirects.contact}>
-        {t('VIEWS.HEADER.contact')}
-            </Navbar.Link>
-        <Navbar.Link onClick={redirects.explore}>
-        {t('VIEWS.HEADER.explore')}
-            </Navbar.Link>
-            
-      </Navbar.Collapse>
+      {!isExploreRoute && (
+        <Navbar.Collapse>
+          <Navbar.Link onClick={redirects.home} active>
+          {t('VIEWS.HEADER.home')}
+          </Navbar.Link>
+          <Navbar.Link href="#">
+          {t('VIEWS.HEADER.about')}
+          </Navbar.Link>
+          <Navbar.Link href="#">
+          {t('VIEWS.HEADER.services')}
+          </Navbar.Link>
+          <Navbar.Link onClick={redirects.pricing}>
+          {t('VIEWS.HEADER.pricing')}
+          </Navbar.Link>
+          <Navbar.Link onClick={redirects.contact}>
+          {t('VIEWS.HEADER.contact')}
+          </Navbar.Link>
+          <Navbar.Link onClick={redirects.explore}>
+          {t('VIEWS.HEADER.explore')}
+          </Navbar.Link>
+        </Navbar.Collapse>
+      )}
     </Navbar>
     </Flowbite>
   );

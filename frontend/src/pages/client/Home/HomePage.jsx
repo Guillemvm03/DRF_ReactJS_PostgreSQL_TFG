@@ -137,7 +137,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      {/* <GoogleMap
+      <GoogleMap
         zoom={13}
         center={{ lat: 38.822144580642735, lng: -0.6070638618184431 }}
         onClick={() => setActiveMarker(null)}
@@ -203,7 +203,7 @@ const HomePage = () => {
           key={"kwsjvdj"}
           position={{ lat: parseFloat(mapL), lng: parseFloat(mapLN) }}
         ></Marker>
-      </GoogleMap> */}
+      </GoogleMap>
     </div>
   ) : (
     <></>

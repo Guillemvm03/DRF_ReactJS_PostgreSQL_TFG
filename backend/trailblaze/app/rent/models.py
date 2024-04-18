@@ -14,8 +14,10 @@ class Rent(models.Model):
     end_date = models.DateTimeField(default=None, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     status = models.CharField(max_length=50)
-    lat = models.CharField(max_length=150)
-    lng = models.CharField(max_length=150)
+    start_lat = models.CharField(max_length=150, null=True)
+    start_lng = models.CharField(max_length=150, null=True)
+    end_lat = models.CharField(max_length=150, null=True)
+    end_lng = models.CharField(max_length=150, null=True)
 
     def __str__(self):
         return str(self.id)

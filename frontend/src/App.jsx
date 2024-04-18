@@ -88,13 +88,14 @@ function App() {
                                 element={<PaymentPage />}
                               ></Route>
                             </Route>
-                            <Route path="/feed" element={<Feed />} />
-                            <Route path="/userfeed" element={<UserFeed />} />
+
                             <Route path="/profile" element={<ProfilePage />} />
                             <Route path="/contactus" element={<ContactUs />} />
 
                             <Route path="/explore" element={<SocialLayout />}>
-                              
+
+                              <Route path="feed" element={<Feed />} />
+                              <Route path=":username" element={<UserFeed />} />
                             </Route>
 
                           </Route>

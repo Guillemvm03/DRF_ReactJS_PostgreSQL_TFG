@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 import SocialSideBar from "./SocialSidebar";
-import Search from "./Search";
+import Search from "../client/Social/Search";
 
 
 const SocialLayout = () => {

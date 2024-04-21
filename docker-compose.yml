@@ -20,6 +20,8 @@ services:
       - ./backend:/app
     ports:
       - "8000:8000"
+    env_file:
+      - ./backend/.env 
     environment:
       - PG_USER=kevin
       - PG_PASSWORD=1234

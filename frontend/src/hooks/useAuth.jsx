@@ -64,5 +64,20 @@ export function useAuth() {
             });
     }, []);
 
-    return { user, setUser, login, register, logout, isAdmin, fetchUserDetails };
+    const searchUsers = (search) => {
+        return UserService.SearchUsers(search)
+            .then(response => {
+                if (response.status === 200) {
+                    return response.data;
+                } else {
+                    throw new Error('Failed to search users');
+                }
+            })
+            .catch(error => {
+                console.error("Error searching users:", error);
+                throw error;
+            });
+    };
+
+    return { user, setUser, login, register, logout, isAdmin, fetchUserDetails, searchUsers };
 }

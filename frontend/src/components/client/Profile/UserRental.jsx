@@ -59,10 +59,10 @@ const ProfilePage = () => {
     lng: mapLN,
   };
 
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: secrets.API_KEY,
-  });
+  // const { isLoaded } = useJsApiLoader({
+  //   id: "google-map-script",
+  //   googleMapsApiKey: secrets.API_KEY,
+  // });
 
   const [activeMarker, setActiveMarker] = useState(null);
 

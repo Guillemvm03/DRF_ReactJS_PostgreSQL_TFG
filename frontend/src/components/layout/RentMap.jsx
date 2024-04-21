@@ -25,6 +25,7 @@ const mapOptions = {
 
 const RentMap = ({ startLat, startLng, endLat, endLng }) => {
   const { isLoaded, loadError } = useJsApiLoader({
+    id: "google-map-script", 
     googleMapsApiKey: secrets.API_KEY 
   });
 

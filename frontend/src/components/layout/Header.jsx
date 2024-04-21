@@ -29,7 +29,8 @@ function Header() {
     admin: () => Navigate("/admin"),
     contact: () => Navigate("/contactus"),
     explore: () => Navigate("/explore"),
-    profile: () => Navigate("/profile"),
+    profile: () => Navigate(`/explore/${user.username}`),
+    settings: () => Navigate("/profile"),
     pricing: () => Navigate("/pricing"),
     login: () => Navigate("/auth/login"),
   };
@@ -67,6 +68,7 @@ function Header() {
                                     <Avatar
                                         alt="User settings"
                                         img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                        // img={user.avatar}
                                         rounded
                                     />
                                     {user.unread_notifications > 0 && (
@@ -84,7 +86,7 @@ function Header() {
                             {user.role === "Admin" && (
                                 <Dropdown.Item onClick={redirects.admin}>Dashboard</Dropdown.Item>
                             )}
-                            <Dropdown.Item>Settings</Dropdown.Item>
+                            <Dropdown.Item onClick={redirects.settings}>Settings</Dropdown.Item>
                             <Dropdown.Item onClick={redirects.profile}>Profile</Dropdown.Item>
                             <Dropdown.Item>Earnings</Dropdown.Item>
                             <Dropdown.Item>

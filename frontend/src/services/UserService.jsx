@@ -15,7 +15,11 @@ const UserService = {
     },
     GetUserByUsername(username) {
         return Api().get(`user/${username}`);
+    },
+    searchUsers(search) {
+        return Api().get(`users/search/?query=${search}`);
     }
+
 
 
 }

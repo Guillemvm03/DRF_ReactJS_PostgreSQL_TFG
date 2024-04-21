@@ -5,7 +5,7 @@ import {
 import { BsFillTrashFill } from "react-icons/bs";
 import { useState } from "react";
 
-const MyPosts = ({ user, myUser }) => {
+const UserPosts = ({ user, myUser }) => {
 
   console.log(user, myUser);
 
@@ -79,4 +79,4 @@ const MyPosts = ({ user, myUser }) => {
   )
 }
 
-export default MyPosts;
+export default UserPosts;

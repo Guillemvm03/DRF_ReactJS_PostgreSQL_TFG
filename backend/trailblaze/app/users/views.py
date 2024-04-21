@@ -47,6 +47,17 @@ def User_login(request):
         print("Exception:", str(e))
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def User_search(request):
+    query = request.query_params.get('query', None)
+    if query is not None:
+        users = User.objects.filter(username__icontains=query)
+        serializer = UserSerializer(users, many=True)
+        return Response({ 'users': serializer.data })
+    else:
+        return Response({'users': []})
+
 
 class UserView(viewsets.GenericViewSet):
     permission_classes = (IsAuthenticated,)

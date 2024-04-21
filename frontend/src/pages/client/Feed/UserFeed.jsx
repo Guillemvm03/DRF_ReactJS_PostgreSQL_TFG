@@ -5,7 +5,10 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { IoMdCalendar } from "react-icons/io";
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth'; 
-import MyPosts from '../../../components/client/Social/MyPosts';
+import UserPosts from '../../../components/client/Social/UserPosts';
+import UserLikes from '../../../components/client/Social/UserLikes';
+import UserMedia from '../../../components/client/Social/UserMedia';
+import UserRe from '../../../components/client/Social/UserRe';
 
 const UserFeed = () => {
 
@@ -16,6 +19,9 @@ const UserFeed = () => {
 
   const { fetchUserDetails, user } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
+
+  const [show, setShow] = useState(0)
+
 
   useEffect(() => {
     if (username) {
@@ -45,7 +51,7 @@ const UserFeed = () => {
         <img
           src={userDetails?.avatar}
           onError={(e) => { e.target.src = 'https://imgs.search.brave.com/gV6Xy99WsNTWpgT2KUNxopKhP45u8QMrrL2DGi5HYxg/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE1Lzg0LzQz/LzM2MF9GXzIxNTg0/NDMyNV90dFg5WWlJ/SXllYVI3TmU2RWFM/TGpNQW15NEd2UEM2/OS5qcGc'; }}
-          className="w-40 h-40 ml-3 object-cover border-8 border-gray-300 -mt-20 shadow-2xl rounded-full" />
+          className="w-40 h-40 ml-3 object-cover border-8 border-green-300 -mt-20 shadow-2xl rounded-full" />
 
         <div>
 
@@ -84,29 +90,38 @@ const UserFeed = () => {
       </div>
 
       <div className="border-b-[1px] border-gray-300 grid grid-cols-4 gap-4">
-        <button 
+        <button
+          onClick={() => setShow(0)}
           className="p-5 cursor-pointer hover:bg-gray-100 transition text-gray-800">
           Posts
         </button>
 
         <button  
+          onClick={() => setShow(1)}
           className="p-5 cursor-pointer hover:bg-gray-100 transition text-gray-800">
           RePosts
         </button>
 
         <button  
+          onClick={() => setShow(2)}
           className="p-5 cursor-pointer hover:bg-gray-100 transition text-gray-800">
           Media
         </button>
 
         <button  
+          onClick={() => setShow(3)}
           className="p-5 cursor-pointer hover:bg-gray-100 transition text-gray-800">
           Likes
         </button>
       </div>
 
-        <MyPosts user={userDetails} myUser={user} />
+        { show === 0 &&<UserPosts user={userDetails} myUser={user} />}
+        
+        { show === 1 && <UserRe user={userDetails} myUser={user} />}
 
+        { show === 2 && <UserMedia user={userDetails} myUser={user} />}
+          
+        { show === 3 && <UserLikes user={userDetails} myUser={user} />}
     </>
   )
 }

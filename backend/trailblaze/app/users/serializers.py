@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('id','username', 'uuid', 'email', 'phone','role', 'password', 'balance')
+        fields = ('id','username', 'uuid', 'email', 'phone','role', 'password', 'balance', 'avatar', 'cover_image', 'date_joined')
         extra_kwargs = {'password': {'write_only': True}}
 
 
@@ -53,7 +53,8 @@ class UserSerializer(serializers.ModelSerializer):
                         'role': user.role,
                         'balance': user.balance,
                         'unread_notifications': unread_notifications_count,
-                        'rent': None
+                        'rent': None,
+                        'avatar': user.avatar,
                     },
                     'token': user.token,
                 }
@@ -71,7 +72,9 @@ class UserSerializer(serializers.ModelSerializer):
                         'id': active_rent[0].id,
                         'start_date': active_rent[0].start_date,
                         'status': active_rent[0].status,
-                    }
+                    },
+                    'avatar': user.avatar,
+
                 },
                 'token': user.token,
 
@@ -83,7 +86,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'uuid', 'email', 'phone', 'role', 'balance', 'avatar', 'cover_image', 
+        fields = ('id', 'username','email', 'phone', 'role', 'balance', 'avatar', 'cover_image', 
                   'date_joined', 'followers_count', 'following_count', 'following')
         extra_kwargs = {'password': {'write_only': True}}
 

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { IoMdCalendar } from "react-icons/io";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth'; 
 import UserPosts from '../../../components/client/Social/UserPosts';
 import UserLikes from '../../../components/client/Social/UserLikes';
@@ -34,11 +34,18 @@ const UserFeed = () => {
 
   return (
     <>
-      <div className="border-b-[1px] border-gray-300 p-5">
+<div className="border-b-[1px] border-gray-300 p-5">
         <div className="flex flex-row items-start gap-3">
           <div>
             <div className="flex flex-row items-center gap-2">
+              <Link to="/explore">
+                <AiOutlineArrowLeft
+                  size={24}
+                  className="text-gray-800 hover:text-blue-500 cursor-pointer"
+                />
+              </Link>
               <p className="text-gray-800 font-semibold text-xl">
+                {userDetails?.username}
               </p>
             </div>
           </div>

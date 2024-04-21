@@ -15,7 +15,7 @@ function Header() {
     
     const { t, i18n } = useTranslation();
     const activeLanguage = i18n.language;
-    const { mode, toggleMode } = useThemeMode(); // Utiliza toggleMode para cambiar el tema
+    const { mode, toggleMode } = useThemeMode();
 
     console.log(activeLanguage);
 
@@ -23,6 +23,7 @@ function Header() {
   const Navigate = useNavigate();
   const { user, logout } = useAuth();
 
+    console.log(user);
   const redirects = {
     home: () => Navigate("/home"),
     stations: () => Navigate("/admin/dashboard/stations"),
@@ -40,7 +41,7 @@ function Header() {
 
   return (
     <Flowbite>
-    <Navbar fluid rounded>
+    <Navbar fluid rounded className="navbar-sticky">
       <Navbar.Brand>
       {/* <img src="https://files.oaiusercontent.com/file-9HREnGcKpXzTXr1ZxycEIWzU?se=2024-04-17T18%3A58%3A28Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D5b83adbb-d393-4a6e-bddb-3bca4cb9270b.webp&sig=Lf4CDzTtd0e/JSFTnB8qRt8bBeGOavK/cfzNmG2R7HQ%3D" 
       className="h-12 sm:h-16 md:h-20 lg:h- xl:h-32" 
@@ -67,8 +68,8 @@ function Header() {
                                 <div>
                                     <Avatar
                                         alt="User settings"
-                                        img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                        // img={user.avatar}
+                                        // img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                        img={user.avatar}
                                         rounded
                                     />
                                     {user.unread_notifications > 0 && (

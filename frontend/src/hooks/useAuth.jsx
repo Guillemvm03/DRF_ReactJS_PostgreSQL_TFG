@@ -64,11 +64,12 @@ export function useAuth() {
             });
     }, []);
 
-    const searchUsers = (search) => {
-        return UserService.SearchUsers(search)
+    const searchUsers = useCallback((search, page = 1) => {
+        return UserService.searchUsers(search, page)
             .then(response => {
                 if (response.status === 200) {
-                    return response.data;
+                    console.log(response.data.results, response.data.next);
+                    return { users: response.data.results, nextPage: response.data.next };
                 } else {
                     throw new Error('Failed to search users');
                 }
@@ -77,7 +78,7 @@ export function useAuth() {
                 console.error("Error searching users:", error);
                 throw error;
             });
-    };
-
+    }, []);
+    
     return { user, setUser, login, register, logout, isAdmin, fetchUserDetails, searchUsers };
 }

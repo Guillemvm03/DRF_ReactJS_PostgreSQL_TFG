@@ -4,12 +4,18 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, action, permission_classes
 from rest_framework.permissions import (IsAuthenticated, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly)
 from django.contrib.auth import authenticate
+from rest_framework.pagination import PageNumberPagination
 
 from .models import User
 from .serializers import UserSerializer, UserDetailSerializer
 
 
 # Create your views here.
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
 
 
 @api_view(['POST'])
@@ -50,14 +56,15 @@ def User_login(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def User_search(request):
+    paginator = StandardResultsSetPagination()
     query = request.query_params.get('query', None)
     if query is not None:
         users = User.objects.filter(username__icontains=query)
-        serializer = UserSerializer(users, many=True)
-        return Response({ 'users': serializer.data })
     else:
-        return Response({'users': []})
-
+        users = User.objects.all()
+    result_page = paginator.paginate_queryset(users, request)
+    serializer = UserSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
 class UserView(viewsets.GenericViewSet):
     permission_classes = (IsAuthenticated,)

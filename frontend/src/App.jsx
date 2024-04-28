@@ -20,7 +20,7 @@ import { NoAuthGuard, AuthGuard } from "./services/guards/AuthGuard";
 
 import { SlotsContext } from "./context/SlotsContext";
 
-
+import { PostContext } from "./context/PostContext";
 
 function App() {
   const StationsDashboard = React.lazy(() =>
@@ -61,6 +61,7 @@ function App() {
             <UserContext>
               <StationContext>
                 <NotificationsContext>
+                <PostContext>
                   <SlotsContext>
                     <BikesContext>
                       <Routes>
@@ -94,7 +95,7 @@ function App() {
 
                             <Route path="/explore" element={<SocialLayout />}>
 
-                              <Route path="feed" element={<Feed />} />
+                              <Route path="" element={<Feed />} />
                               <Route path=":username" element={<UserFeed />} />
                             </Route>
 
@@ -141,6 +142,7 @@ function App() {
                       <Toastr></Toastr>
                     </BikesContext>
                   </SlotsContext>
+                  </PostContext>
                 </NotificationsContext>
               </StationContext>
             </UserContext>

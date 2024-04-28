@@ -65,7 +65,7 @@ def User_search(request):
     else:
         users = User.objects.all().exclude(id=user.id)
     result_page = paginator.paginate_queryset(users, request)
-    serializer = UserDetailSerializer(result_page, many=True)
+    serializer = UserDetailSerializer(result_page, many=True, context={'request': request})  
     return paginator.get_paginated_response(serializer.data)
 
 class UserView(viewsets.GenericViewSet):

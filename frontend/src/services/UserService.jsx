@@ -19,6 +19,13 @@ const UserService = {
     searchUsers(search, page) {
         console.log(search, page);
         return Api().get(`users/search/?query=${encodeURIComponent(search)}&page=${page}`);
+    },
+    followUser(uuid) {
+        return Api().post(`users/${uuid}/follow/`);
+    },
+
+    unfollowUser(uuid) {
+        return Api().post(`users/${uuid}/unfollow/`);
     }
     
 

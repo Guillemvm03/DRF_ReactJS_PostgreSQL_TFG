@@ -13,6 +13,14 @@ const UserService = {
     GetUser() {
         return Api().get('user');
     },
+    GetUserByUsername(username) {
+        return Api().get(`user/${username}`);
+    },
+    searchUsers(search, page) {
+        console.log(search, page);
+        return Api().get(`users/search/?query=${encodeURIComponent(search)}&page=${page}`);
+    }
+    
 
 
 }

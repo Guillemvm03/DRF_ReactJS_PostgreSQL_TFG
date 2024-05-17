@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useCallback } from 'react';
 import UserContext from '../context/UserContext';
 import UserService from '../services/UserService';
 import JwtService from '../services/JwtService';
@@ -47,7 +47,38 @@ export function useAuth() {
         JwtService.destroyToken();
         Navigate('/auth/login')
         useCreateToastr({ status: true })
-    }
+    };
 
-    return { user, setUser, login, register, logout, isAdmin };
+    const fetchUserDetails = useCallback((username) => {
+        return UserService.GetUserByUsername(username)
+            .then(response => {
+                if (response.status === 200) {
+                    return response.data;
+                } else {
+                    throw new Error('Failed to fetch user details');
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching user details:", error);
+                throw error;
+            });
+    }, []);
+
+    const searchUsers = useCallback((search, page = 1) => {
+        return UserService.searchUsers(search, page)
+            .then(response => {
+                if (response.status === 200) {
+                    console.log(response.data.results, response.data.next);
+                    return { users: response.data.results, nextPage: response.data.next };
+                } else {
+                    throw new Error('Failed to search users');
+                }
+            })
+            .catch(error => {
+                console.error("Error searching users:", error);
+                throw error;
+            });
+    }, []);
+    
+    return { user, setUser, login, register, logout, isAdmin, fetchUserDetails, searchUsers };
 }

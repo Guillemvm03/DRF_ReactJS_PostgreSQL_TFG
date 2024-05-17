@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Loading from "./components/Loading/Loading";
 import Sidebar from "./components/layout/Sidebar";
+import SocialLayout from "./components/layout/SocialLayout";
 
 import "./App.css";
 import { UserContext } from "./context/UserContext";
@@ -19,6 +20,8 @@ import { NoAuthGuard, AuthGuard } from "./services/guards/AuthGuard";
 
 import { SlotsContext } from "./context/SlotsContext";
 
+
+
 function App() {
   const StationsDashboard = React.lazy(() =>
     import("./pages/admin/stations/StationsDashboard")
@@ -33,6 +36,7 @@ function App() {
     import("./pages/admin/notifications/NotificationDashboard")
   );
 
+
   const Login = React.lazy(() => import("./pages/auth/Login"));
   const Register = React.lazy(() => import("./pages/auth/Register"));
   const ProfilePage = React.lazy(() =>
@@ -42,10 +46,12 @@ function App() {
     import("./pages/StationDetails/StationDetails")
   );
   const HomePage = React.lazy(() => import("./pages/client/Home/HomePage"));
-  const AdminPage = React.lazy(() => import("./pages/admin/AdminPage"));
+  // const AdminPage = React.lazy(() => import("./pages/admin/AdminPage"));
   const PaymentPage = React.lazy(() => import("./pages/payment/PaymentPage"));
   const ContactUs = React.lazy(() => import("./pages/contact/ContactUs"));
   const PricingPage = React.lazy(() => import("./pages/payment/PricingPage"));
+  const Feed = React.lazy(() => import("./pages/client/Feed/Feed"));
+  const UserFeed = React.lazy(() => import("./pages/client/Feed/UserFeed"));
 
   return (
     <>
@@ -60,6 +66,7 @@ function App() {
                       <Routes>
                         <Route path="/admin/*" element={<Sidebar />} />
                         <Route path="/*" element={<Header />} />
+                        {/* <Route path="/explore/*" element={<SocialLayout />} /> */}
                       </Routes>
                       <div className="container mx-auto my-3">
                         <Routes>
@@ -81,9 +88,18 @@ function App() {
                                 element={<PaymentPage />}
                               ></Route>
                             </Route>
+
                             <Route path="/profile" element={<ProfilePage />} />
                             <Route path="/contactus" element={<ContactUs />} />
+
+                            <Route path="/explore" element={<SocialLayout />}>
+
+                              <Route path="feed" element={<Feed />} />
+                              <Route path=":username" element={<UserFeed />} />
+                            </Route>
+
                           </Route>
+
 
                           {/* you must not be logged in */}
                           <Route path="/auth" element={<NoAuthGuard />}>
@@ -133,6 +149,9 @@ function App() {
       </Suspense>
     </>
   );
+
+  
 }
+
 
 export default App;

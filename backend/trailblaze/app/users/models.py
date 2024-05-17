@@ -46,9 +46,11 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
     role = models.CharField(max_length=15, default='Client')
     is_staff = models.BooleanField(default=False)
     avatar = models.CharField(max_length=255)
+    cover_image = models.CharField(max_length=255)
     countTokens = models.IntegerField(default=0)
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-
+    date_joined = models.DateTimeField(auto_now_add=True)
+    following = models.ManyToManyField("self",symmetrical=False,related_name="followed" ,blank=True)
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
@@ -77,3 +79,7 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token.decode('utf-8')
+    
+    def followed_usernames(self):
+        return [{'username': user.username, 'avatar': user.avatar.url} for user in self.followed.all()]
+

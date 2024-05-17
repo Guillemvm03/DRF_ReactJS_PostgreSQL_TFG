@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRent } from "../../../hooks/useRent";
+import RentMap from "../../layout/RentMap";
 
 const RentalHistory = () => {
     const { userRents, useGetRents } = useRent();
@@ -8,6 +9,14 @@ const RentalHistory = () => {
     useEffect(() => {
         useGetRents(true);
     },[]);
+
+
+    const formatDate = (dateString) => {
+        if (!dateString) return 'N/A'; // Gestiona fechas nulas o indefinidas
+    
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleDateString('en-US', options).replace(/(\d+)\/(\d+)\/(\d+), (\d+:\d+)/, '$3-$1-$2 $4');
+    };
 
     return (
         <>
@@ -18,25 +27,31 @@ const RentalHistory = () => {
                         Get Bills
                     </button>
                 </div>
-                <div className="mt-8">
-                    {userRents && userRents.map((rent, index) => (
-                        <div key={index} className="flex flex-col md:flex-row border-b border-gray-400 py-4">
+                {userRents && userRents.map((rent, index) => (
+                    <div key={index} className="mb-8">
+                        <div className="flex flex-col md:flex-row border-b border-gray-400 py-4">
                             <div className="flex-shrink-0">
                                 <img src={rent.imageUrl || "https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="Imagen del producto" className="w-32 h-32 object-cover"/>
                             </div>
                             <div className="mt-4 md:mt-0 md:ml-6">
                                 <h2 className="text-lg font-bold">{rent.productTitle}</h2>
-                                <p className="mt-2 text-gray-600"><b>Start date:</b> {rent.start_date}</p>
-                                <p className="mt-2 text-gray-600"><b>End date:</b> {rent.end_date}</p>
-
-                                <div className="mt-4 flex items-center">
+                                <p className="mt-2 text-gray-600"><b>Start date:</b> {formatDate(rent.start_date)}</p>
+                                <p className="mt-2 text-gray-600"><b>End date:</b> {formatDate(rent.end_date)}</p>
+                                {/* <div className="mt-4 flex items-center"> */}
                                     <span className="ml-auto font-bold">Amount: ${rent.amount}</span>
-                                </div>
+                                {/* </div> */}
                             </div>
+                            
+                            <RentMap
+                            startLat={rent.start_lat}
+                            startLng={rent.start_lng}
+                            endLat={rent.end_lat}
+                            endLng={rent.end_lng}
+                        />
                         </div>
-                    ))}
-                </div>
 
+                    </div>
+                ))}
             </div>
         </>
     );

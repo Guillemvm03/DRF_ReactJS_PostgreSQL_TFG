@@ -1,0 +1,70 @@
+{
+
+    "VIEWS":{
+        "HEADER": {
+            "home":"Home",
+            "about":"About",
+            "contact":"Contact",
+            "explore":"Explore",
+            "services":"Services",
+            "pricing":"Pricing",
+            "login":"Login",
+            "logout":"Logout"
+        },
+        "HOME": {
+            "title":"We invest in the world’s potential",
+            "content":"Here at Trailblaze we focus on markets where technology, innovation,\nand capital can unlock long-term value and drive economic growth",
+            "get-started":"Get Started",
+            "learn-more":"Learn More"
+        },
+        "CREDENTIALS": {
+            "LOGIN": {
+                "title":"Log in to your account",
+                "email":"Your email",
+                "password":"Your password",
+                "login":"Log in",
+                "redirect-register":"Don't have an account?",
+                "register":"Register"
+                
+            },
+            "REGISTER": {
+                "title":"Register a new account",
+                "email":"Email",
+                "number":"Phone number",
+                "password":"Password",
+                "confirm-password":"Confirm password",
+                "register":"Register",
+                "already-member":"Already have an account?",
+                "login":"Log in"
+            }
+
+        },
+        "CONTACT_US": {
+            "title": "Contact Us",
+            "description": "Do you have a technical issue? Want to send feedback on a beta feature? Need details about our Business plan? Let us know.",
+            "yourName": "Your name",
+            "yourEmail": "Your email",
+            "yourMessage": "Your message",
+            "leaveComment": "Leave a comment...",
+            "sendMessage": "Send Message"
+        },
+        "TOASTR": {
+            "emailSent": "Email sent successfully",
+            "emailFailedToSend": "Failed to send email"
+        },
+        "PRICING": {
+            "title": "Pricing",
+            "description": "Quickly recharge your balance.",
+            "starter": "Starter",
+            "starterDescription": "Best option for personal use and your next project.",
+            "company": "Company",
+            "companyDescription": "Relevant for multiple users, extended and premium support.",
+            "enterprise": "Enterprise",
+            "enterpriseDescription": "Ideal for large-scale usage and extended redistribution rights.",
+            "getStarted": "Get Started"
+        }
+
+    }
+
+
+}

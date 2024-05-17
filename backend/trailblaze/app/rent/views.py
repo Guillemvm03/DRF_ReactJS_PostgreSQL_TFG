@@ -34,6 +34,10 @@ def start_rent(request):
 
         user = User.objects.get(email=request.user.email)
 
+        start_station = slot.station
+        start_lat = start_station.lat
+        start_lng = start_station.lng
+
 
         bike = slot.bike
         rent = Rent.objects.create(
@@ -42,6 +46,8 @@ def start_rent(request):
             collection_slot=slot,
             return_slot=None,
             start_date=datetime.now(),
+            start_lat=start_lat, 
+            start_lng=start_lng, 
             amount=0.0,
             status='active'
         )
@@ -78,6 +84,11 @@ def end_rent(request, rent_id):
         return_slot_id = request.data.get('return_slot')
         return_slot = Slot.objects.get(id=return_slot_id, status='free', bike=None)
 
+        end_station = return_slot.station
+        end_lat = end_station.lat
+        end_lng = end_station.lng
+
+
         end_time = datetime.now(timezone.utc)
         start_time = rent.start_date.replace(tzinfo=timezone.utc)
         duration = end_time - start_time
@@ -95,6 +106,8 @@ def end_rent(request, rent_id):
 
         # Actualizar la renta y el slot de retorno
         rent.end_date = datetime.now()
+        rent.end_lat = end_lat  
+        rent.end_lng = end_lng  
         rent.status = 'inactive'
         rent.return_slot = return_slot
         rent.save()

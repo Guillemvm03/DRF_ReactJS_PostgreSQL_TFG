@@ -1,44 +1,46 @@
-# TrailBlaze
+# 🚴 TrailBlaze
 
 ## Descripción
-TrailBlaze es una aplicación para alquilar bicicletas, diseñada para ofrecer funcionalidades tanto a administradores como a usuarios. Los administradores pueden crear estaciones, gestionar el servidor y manejar aspectos relacionados con el backend, mientras que los usuarios tienen la capacidad de alquilar bicicletas, recargar saldo y reportar posibles problemas.
+**TrailBlaze** es una plataforma de alquiler de bicicletas diseñada para mejorar la movilidad urbana de manera sostenible y eficiente. La aplicación permite a los usuarios localizar, reservar y pagar el alquiler de bicicletas fácilmente, mientras que los administradores pueden gestionar inventarios, reservas y transacciones financieras.
+
+## Características Principales
+- 🌍 **Conectividad Global y Local**: Acceso universal a bicicletas en múltiples ciudades y países.
+- 💬 **Comunidad y Compromiso Social**: Red social integrada para compartir rutas, experiencias y consejos.
+- 🔍 **Accesibilidad y Facilidad de Uso**: Interfaz multilingüe y amigable para usuarios de diversas regiones.
+- 📱 **Interfaz Intuitiva**: Diseño responsive y adaptabilidad para diferentes dispositivos.
+- 🔒 **Seguridad y Fiabilidad**: Gestión segura de datos y transacciones.
 
 ## Tecnologías Utilizadas
-- Django Rest Framework (DRF)
-- React JS
-- Docker
-- Docker Compose
-- Tailwind CSS
+### Backend
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)  
+Django proporciona la velocidad y potencia de Python con muchas características integradas adicionales para ayudar a crear aplicaciones web y APIs rápidamente.
 
-## Requisitos Previos
-Asegúrate de tener instalados Node.js, Docker y Docker Compose en tu sistema antes de proceder.
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)  
+PostgreSQL es conocido por su alta fiabilidad y extensibilidad, asegurando que los datos estén seguros y que la aplicación sea resistente a fallos.
+
+### Frontend
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)  
+React agiliza el proceso de desarrollo gracias a su sistema de componentes reutilizables, asegurando una experiencia de usuario coherente y fluida.
+
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)  
+Tailwind CSS facilita un desarrollo más rápido aplicando estilos directamente en el HTML, con componentes pre-diseñados de Flowbite.
+
+### Despliegue
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)  
+Docker permite empaquetar una aplicación y sus dependencias en un contenedor virtual, facilitando que la aplicación se comporte de la misma manera en desarrollo, pruebas y producción.
+
+### Control de Versiones
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)  
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)  
+Git y GitHub se utilizan para manejar eficazmente el código fuente y facilitar la colaboración entre desarrolladores, implementando linters como Black y Flake8 para Django, y ESLint para React.
 
 ## Instalación
-1. Configura los archivos `.env` tanto para el backend como para el frontend.
-2. Ejecuta `npm install` en la carpeta del frontend para instalar las dependencias necesarias.
+### Requisitos Previos
+- Python 3.x
+- Node.js
+- Docker
 
-## Ejecución en un Entorno Local
-Para ejecutar la aplicación en un entorno de desarrollo local, navega a la raíz del proyecto y ejecuta el siguiente comando:
-```
-docker-compose up
-```
-
-## Estructura del Proyecto
-El proyecto se estructura en dos carpetas principales:
-- `backend`: Contiene la lógica del servidor, incluyendo la carpeta `trailblaze` donde se encuentra la aplicación, así como archivos de configuración.
-- `frontend`: Contiene archivos de configuración y la carpeta `src`, donde reside la aplicación frontend.
-
-## Configuración
-Los archivos de configuración más importantes son:
-- `.env` en la carpeta `backend`: Este archivo contiene las variables de entorno necesarias para la configuración del backend.
-- `secrets.js` en la carpeta `frontend`: Aquí se encuentran las credenciales que deben coincidir con las variables de entorno definidas en Docker Compose.
-
-## Uso
-Una vez que el proyecto esté en funcionamiento, puedes acceder a él a través de `localhost` en el puerto asignado a cada servicio.
-
-## Contacto
-- Guillem 
-- Kevin
-
-## Estado del Proyecto
-Finalizado
+### Clonar el Repositorio
+```bash
+git clone https://github.com/tu_usuario/trailblaze.git
+cd trailblaze

@@ -11,7 +11,6 @@ function logout() {
 
 const SocialSideBar = () => {
     const { user } = useAuth();
-    console.log(user);
 
     return (
         <div className="fixed inset-x-0 bottom-0 sm:relative sm:inset-auto sm:h-full bg-white p-2 sm:flex sm:flex-col sm:items-center xl:items-start xl:w-[340px]">

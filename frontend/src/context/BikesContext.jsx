@@ -8,7 +8,6 @@ export function BikesContext({ children }) {
     const [bikes, setBikes] = useState([])
 
     useEffect(function () {
-        // console.log("aaa");
         BikesService.GetBikes()
             .then(res => {
                 setBikes(res.data)

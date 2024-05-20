@@ -17,7 +17,8 @@ const UserFeed = () => {
 
   const { username } = useParams();
 
-  const { fetchUserDetails, user, followUser, unfollowUser } = useAuth();
+  const { fetchUserDetails, user, 
+    followUser, unfollowUser } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
 
   const [show, setShow] = useState(0)

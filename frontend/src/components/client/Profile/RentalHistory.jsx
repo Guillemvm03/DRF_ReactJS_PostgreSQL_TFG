@@ -6,13 +6,14 @@ import html2canvas from 'html2canvas';
 
 const RentalHistory = () => {
   const { userRents, useGetRents } = useRent();
+  const [mapImage, setMapImage] = useState(null);
 
   useEffect(() => {
     useGetRents(true);
   }, []);
 
   const formatDate = (dateString) => {
-    if (!dateString) return "N/A"; // Gestiona fechas nulas o indefinidas
+    if (!dateString) return "N/A";
 
     const options = {
       year: "numeric",
@@ -26,13 +27,31 @@ const RentalHistory = () => {
       .replace(/(\d+)\/(\d+)\/(\d+), (\d+:\d+)/, "$3-$1-$2 $4");
   };
 
-  const handleShare = async () => {
-      const mapElement = document.getElementById('rentMap'); // Asegúrate de que tu componente de mapa tenga este ID
-      const canvas = await html2canvas(mapElement);
+  const handleShare = async (mapId, buttonId) => {
+    const mapElement = document.getElementById(mapId);
+    const buttonElement = document.getElementById(buttonId);
+    if (mapElement && buttonElement) {
+      // Ocultar el botón de descarga
+      buttonElement.style.display = 'none';
+
+      // Capturar la imagen del mapa
+      const canvas = await html2canvas(mapElement, {
+        scale: 2, // Aumentar la escala para mayor calidad
+        useCORS: true, // Para habilitar la carga de imágenes cross-origin
+      });
+
+      // Mostrar nuevamente el botón de descarga
+      buttonElement.style.display = 'block';
+
+      // Generar la imagen y descargarla
       const image = canvas.toDataURL('image/png');
-      // Guarda esta imagen en el contexto o estado global
-      setSharedImage(image); // Suponiendo que tienes un método para actualizar tu contexto
-    };
+      setMapImage(image);
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = 'map.png';
+      link.click();
+    }
+  };
 
   return (
     <>
@@ -57,7 +76,7 @@ const RentalHistory = () => {
                     className="w-32 h-32 object-cover"
                   />
                 </div>
-                <div className="mt-4 md:mt-0 md:ml-6">
+                <div className="mt-4 md:mt-0 md:ml-6 flex-grow">
                   <h2 className="text-lg font-bold">{rent.productTitle}</h2>
                   <p className="mt-2 text-gray-600">
                     <b>Start date:</b> {formatDate(rent.start_date)}
@@ -65,20 +84,26 @@ const RentalHistory = () => {
                   <p className="mt-2 text-gray-600">
                     <b>End date:</b> {formatDate(rent.end_date)}
                   </p>
-                  {/* <div className="mt-4 flex items-center"> */}
                   <span className="ml-auto font-bold">
                     Amount: ${rent.amount}
                   </span>
-                  {/* </div> */}
                 </div>
-                {/* <div id="rentMap"> */}
+                <div id={`rentMap-${index}`} className="mt-4 md:mt-0 md:ml-6 w-full">
                   <RentMap
                     startLat={rent.start_lat}
                     startLng={rent.start_lng}
                     endLat={rent.end_lat}
                     endLng={rent.end_lng}
+                    mapId={`rentMap-${index}`}
                   />
-                {/* </div> */}
+                  <button
+                    id={`downloadButton-${index}`}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+                    onClick={() => handleShare(`rentMap-${index}`, `downloadButton-${index}`)}
+                  >
+                    Download Map
+                  </button>
+                </div>
               </div>
             </div>
           ))}

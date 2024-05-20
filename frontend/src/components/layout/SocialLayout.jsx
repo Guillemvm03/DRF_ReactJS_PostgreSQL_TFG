@@ -23,3 +23,4 @@ const SocialLayout = () => {
 }
 
 export default SocialLayout;
+

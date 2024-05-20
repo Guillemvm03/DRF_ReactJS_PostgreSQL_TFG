@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const UserPosts = ({ user, myUser }) => {
 
-  console.log(user, myUser);
+  // console.log(user, myUser);
 
   return (
     <div className="border-b-[1px] border-gray-300 p-5 cursor-pointer hover:bg-gray-100 transition">

@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('id','username', 'uuid', 'email', 'phone','role', 'password', 'balance', 'avatar', 'cover_image', 'date_joined')
+        fields = ('id','username', 'uuid', 'email', 'phone','role', 'password', 'balance', 'avatar', 'cover_image', 'date_joined','following')
         extra_kwargs = {'password': {'write_only': True}}
 
 
@@ -68,13 +68,13 @@ class UserSerializer(serializers.ModelSerializer):
                     'role': user.role,
                     'balance': user.balance,
                     'unread_notifications': unread_notifications_count,
+                    
                     'rent':{
                         'id': active_rent[0].id,
                         'start_date': active_rent[0].start_date,
                         'status': active_rent[0].status,
                     },
                     'avatar': user.avatar,
-
                 },
                 'token': user.token,
 
@@ -83,11 +83,12 @@ class UserSerializer(serializers.ModelSerializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     followers_count = serializers.SerializerMethodField()
     following_count = serializers.SerializerMethodField()
+    is_following = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ('id', 'username','email', 'phone', 'role', 'balance', 'avatar', 'cover_image', 
-                  'date_joined', 'followers_count', 'following_count', 'following')
+        fields = ('id', 'uuid', 'username','email', 'phone', 'role', 'balance', 'avatar', 'cover_image', 
+                  'date_joined', 'followers_count', 'following_count', 'following', 'is_following')
         extra_kwargs = {'password': {'write_only': True}}
 
     def get_followers_count(self, obj):
@@ -95,3 +96,8 @@ class UserDetailSerializer(serializers.ModelSerializer):
     
     def get_following_count(self, obj):
         return obj.following.count()
+    
+    def get_is_following(self, obj):
+        current_user = self.context.get('request').user
+        print("asas",obj.followed.all())
+        return True if current_user in obj.followed.all() else False

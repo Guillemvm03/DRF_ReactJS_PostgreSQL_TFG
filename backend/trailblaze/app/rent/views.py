@@ -157,6 +157,5 @@ class RentView(viewsets.ModelViewSet):
 
         user = request.user
         rental_history = Rent.objects.filter(user=user, status='inactive').order_by('-start_date')
-        print(rental_history)
         serializer = self.get_serializer(rental_history, many=True)
         return Response(serializer.data)

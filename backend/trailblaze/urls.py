@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +29,5 @@ urlpatterns = [
     path('api/', include('trailblaze.app.payout.urls')),
     path('api/', include('trailblaze.app.rent.urls')),
     path('api/', include('trailblaze.app.notifications.urls')),
-]
+    path('api/', include('trailblaze.app.posts.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

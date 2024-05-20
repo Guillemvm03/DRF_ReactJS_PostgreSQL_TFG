@@ -63,15 +63,7 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
     def token(self):
         return self.generate_token_jwt(3600)
 
-    # def generate_token_jwt(self):
-    #     dt = datetime.now() + timedelta(minutes=settings.JWT_EXP_TIME)
 
-    #     token = jwt.encode({
-    #         'email': self.email,
-    #         'exp': int(dt.strftime('%s'))
-    #     }, settings.SECRET_KEY, algorithm='HS256')
-
-    #     return token 
     
     def generate_token_jwt(self, token_time):
         dt = datetime.now() + timedelta(seconds=token_time)

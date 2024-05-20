@@ -25,7 +25,7 @@ const Search = () => {
         const { users, nextPage } = await searchUsers(search, page);
         setResults(users);  
         setNextPage(nextPage);
-        console.log(users, nextPage); 
+        // console.log(users, nextPage); 
       } catch (error) {
         console.error("Error during user search:", error);
         setResults([]);
@@ -51,7 +51,7 @@ const Search = () => {
   };
 
   return (
-    <div className="hidden lg:inline ml-8 xl:w-[450px] py-1 space-y-5">
+    <div className="sticky hidden lg:inline ml-8 xl:w-[450px] py-1 space-y-5">
         <div className="sticky top-0 py-1.5 bg-white z-50 w-11/12 xl:w-9/12">
             <div className="flex items-center bg-gray-200 p-3 rounded-full relative">
                 <SearchIcon className="text-gray-800 h-5 z-50" />
@@ -64,7 +64,7 @@ const Search = () => {
                 />
             </div>
         </div>
-        <div className="text-black space-y-3 bg-gray-100 pt-2 rounded-xl w-11/12 xl:w-9/12">
+        <div className="text-black space-y-3 bg-gray-100 pt-2 rounded-xl w-11/12 xl:w-9/12 ">
             <h4 className="font-bold text-xl px-4">Who to follow</h4>
             {results.length > 0 ? (
                 results.map(user => (

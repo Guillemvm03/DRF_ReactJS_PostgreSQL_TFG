@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'trailblaze.app.payout',
     'trailblaze.app.rent',
     'trailblaze.app.notifications',
+    'trailblaze.app.posts',
     'channels',
 ]
 
@@ -173,6 +174,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.User"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # JWT_EXP_TIME = 60 
 

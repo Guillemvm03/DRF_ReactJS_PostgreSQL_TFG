@@ -68,7 +68,7 @@ export function useAuth() {
         return UserService.searchUsers(search, page)
             .then(response => {
                 if (response.status === 200) {
-                    console.log(response.data.results, response.data.next);
+                    // console.log(response.data.results, response.data.next);
                     return { users: response.data.results, nextPage: response.data.next };
                 } else {
                     throw new Error('Failed to search users');
@@ -79,6 +79,30 @@ export function useAuth() {
                 throw error;
             });
     }, []);
+
+    const followUser = useCallback((uuid) => {
+        return UserService.followUser(uuid)
+            .then(response => {
+                useCreateToastr({ status: true, message: "Now following!" });
+                return response.data;
+            })
+            .catch(error => {
+                console.error("Error following user:", error);
+                throw error;
+            });
+    }, []);
+
+    const unfollowUser = useCallback((uuid) => {
+        return UserService.unfollowUser(uuid)
+            .then(response => {
+                useCreateToastr({ status: true, message: "Unfollowed successfully." });
+                return response.data;
+            })
+            .catch(error => {
+                console.error("Error unfollowing user:", error);
+                throw error;
+            });
+    }, []);
     
-    return { user, setUser, login, register, logout, isAdmin, fetchUserDetails, searchUsers };
+    return { user, setUser, login, register, logout, isAdmin, fetchUserDetails, searchUsers, followUser, unfollowUser};
 }

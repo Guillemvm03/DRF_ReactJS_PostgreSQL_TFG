@@ -3,8 +3,8 @@ import { GoogleMap, DirectionsRenderer, useJsApiLoader } from "@react-google-map
 import secrets from "../../secrets";
 
 const containerStyle = {
-  width: '70%',
-  height: '200px'
+  width: '100%',  // Ancho al 100%
+  height: '300px' // Altura aumentada
 };
 
 const mapOptions = {
@@ -23,7 +23,7 @@ const mapOptions = {
   }]
 };
 
-const RentMap = ({ startLat, startLng, endLat, endLng }) => {
+const RentMap = ({ startLat, startLng, endLat, endLng, mapId }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script", 
     googleMapsApiKey: secrets.API_KEY 
@@ -58,14 +58,16 @@ const RentMap = ({ startLat, startLng, endLat, endLng }) => {
   if (coordinatesAreSame) return <div>No route to display as start and end locations are the same.</div>;
 
   return (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={directions ? directions.routes[0].bounds.getCenter() : { lat: 0, lng: 0 }}
-      zoom={10}
-      options={mapOptions}
-    >
-      {directions && <DirectionsRenderer directions={directions} />}
-    </GoogleMap>
+    <div id={mapId}>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={directions ? directions.routes[0].bounds.getCenter() : { lat: 0, lng: 0 }}
+        zoom={10}
+        options={mapOptions}
+      >
+        {directions && <DirectionsRenderer directions={directions} />}
+      </GoogleMap>
+    </div>
   );
 };
 
